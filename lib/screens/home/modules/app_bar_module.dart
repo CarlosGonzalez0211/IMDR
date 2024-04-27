@@ -10,55 +10,65 @@ class AppBarModule extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: Colors.transparent, // AppBar background color
       elevation: 0, // Remove shadow
-      flexibleSpace: SafeArea( // Wrap the content in a SafeArea widget
+      flexibleSpace: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16), // Add padding around the edges
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center, // Align title in the available space
-            crossAxisAlignment: CrossAxisAlignment.start, // Align text to the left
-            children: [
-              const Text(
-                'Hello,',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16.0,
-                ),
-              ),
-              const FittedBox( // Wrap the second text widget to prevent it from being cropped
-                fit: BoxFit.fitWidth, // This will scale the text down if it doesn't fit
-                child: Text(
-                  'Good Morning',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24.0,
+          child: LayoutBuilder( // Added LayoutBuilder to check constraints
+            builder: (BuildContext context, BoxConstraints constraints) {
+              print("Max height: ${constraints.maxHeight}, Max width: ${constraints.maxWidth}"); // Debug print
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center, // Align title in the available space
+                crossAxisAlignment: CrossAxisAlignment.start, // Align text to the left
+                children: [
+                  const Text(
+                    'Hello,',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16.0,
+                    ),
                   ),
-                ),
-              ),
-              FittedBox(
-                fit: BoxFit.fitWidth,
-                child: Text(
-                  userData?.displayName?.split(" ")[0] ?? '',
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24.0,
+                  Expanded( // Wrap with Expanded to ensure proper size allocation
+                    child: FittedBox(
+                      fit: BoxFit.fitWidth, // This will scale the text down if it doesn't fit
+                      child: Text(
+                        'Good Morning',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24.0,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            ],
+                  if (userData?.displayName != null) // Conditionally display this widget
+                    Expanded( // Wrap with Expanded
+                      child: FittedBox(
+                        fit: BoxFit.fitWidth,
+                        child: Text(
+                          userData!.displayName!.split(" ")[0],
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24.0,
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
+              );
+            },
           ),
         ),
       ),
       actions: [
         IconButton(
-          icon: const Icon(Icons.search, color: Colors.black, size: 32,),
+          icon: const Icon(Icons.search, color: Colors.black, size: 32),
           onPressed: () {
             // Implement search action
           },
         ),
         IconButton(
-          icon: const Icon(Icons.notifications_none, color: Colors.black, size: 32,),
+          icon: const Icon(Icons.notifications_none, color: Colors.black, size: 32),
           onPressed: () {
             // Implement notification action
           },
