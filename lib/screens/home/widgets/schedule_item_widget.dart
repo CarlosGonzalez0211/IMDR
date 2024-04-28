@@ -26,15 +26,39 @@ class ScheduleItemWidget extends StatelessWidget {
         color: color,
         borderRadius: BorderRadius.circular(8), // Rounded corners
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(date, style: const TextStyle(fontWeight: FontWeight.bold)),
-          Text(time),
-          const Spacer(), // Use Spacer to push the rest to the bottom
-          Text(doctorName, style: const TextStyle(fontWeight: FontWeight.bold)),
-          Text(address),
-        ],
+      child: Expanded(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              date,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+              overflow: TextOverflow.ellipsis,
+            ),
+            Text(
+              time,
+              overflow: TextOverflow.ellipsis,
+            ),
+            const Spacer(), // Use Spacer to push the rest to the bottom
+            Flexible(
+              child: Text.rich(
+                TextSpan(
+                  text: doctorName,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            Flexible(
+              child: Text.rich(
+                TextSpan(text: address),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -7,6 +7,8 @@ import 'package:hackathon_app/screens/calendar/blueprint/calendar_blueprint.dart
 import '../chatapp/chat_screen.dart';
 import '../chatapp/contacts/messages_list.dart';
 import '../home/blueprint/home_blueprint.dart';
+import '../insights/insights_screen.dart';
+import '../people/people_screen.dart';
 
 class NavigationController extends GetxController {
   final User? user;
@@ -19,12 +21,8 @@ class NavigationController extends GetxController {
       HomeScreen(user: user),
       const CalendarBlueprint(),
       ChatScreenList(userData: user),
-      Container(
-        color: Colors.black,
-      ),
-      Container(
-        color: Colors.green,
-      ),
+      const InsightsScreen(),
+      const NetworkPage()
     ];
   }
 }

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../../../services/database_service.dart';
 import '../../../services/managers/news_manager.dart';
 import '../modules/app_bar_module.dart';
 import '../modules/horizontal_menu_module.dart';
@@ -20,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    DatabaseService databaseService = DatabaseService(widget.user);
     // Handle null user case
     if (widget.user == null) {
       // Redirect to login or show an appropriate message
@@ -33,6 +35,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBarModule(userData: widget.user),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          databaseService.initializeDummyData();
+        },
+
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
