@@ -27,7 +27,7 @@ class AppBarModule extends StatelessWidget implements PreferredSizeWidget {
                       fontSize: 16.0,
                     ),
                   ),
-                  Expanded( // Wrap with Expanded to ensure proper size allocation
+                  const Expanded( // Wrap with Expanded to ensure proper size allocation
                     child: FittedBox(
                       fit: BoxFit.fitWidth, // This will scale the text down if it doesn't fit
                       child: Text(

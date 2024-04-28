@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
+import '../../../services/managers/data/stream_appointment_manager.dart';
 import '../widgets/schedule_item_widget.dart';
 
 class ScheduleList extends StatelessWidget {
-  final List<ScheduleItem> items;
+  final StreamAppointmentManager _streamAppointmentManager;
 
-  const ScheduleList({super.key, required this.items});
+  ScheduleList({super.key})
+      : _streamAppointmentManager = StreamAppointmentManager(userData: FirebaseAuth.instance.currentUser);
 
   @override
   Widget build(BuildContext context) {
@@ -13,21 +16,37 @@ class ScheduleList extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0), // Add padding around the title
+          padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
           child: Text(
-            'Your Next Appointment',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),// Styling for the title
+            'Your Next Appointments',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
           ),
         ),
-        SizedBox(
-          height: 150, // Adjust height as needed for the list
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal, // Make it scrollable horizontally
-            itemCount: items.length,
-            itemBuilder: (context, index) {
-              return items[index];
-            },
-          ),
+        StreamBuilder<List<ScheduleItemWidget>>(
+          stream: _streamAppointmentManager.appointmentStream,
+          builder: (context, snapshot) {
+            if (snapshot.hasError) return Text('Error: ${snapshot.error}');
+            if (!snapshot.hasData) return const Center(child: Text('You have no appointments coming up'),);
+
+            var items = snapshot.data!;
+            return SizedBox(
+              height: 150,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: items.length,
+                itemBuilder: (context, index) {
+                  final item = items[index];
+                  return ScheduleItemWidget(
+                    date: item.date,
+                    time: item.time,
+                    doctorName: item.doctorName,
+                    address: item.address,
+                    color: item.color,
+                  );
+                },
+              ),
+            );
+          },
         ),
       ],
     );

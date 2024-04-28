@@ -39,39 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(height: 10,),
           const HorizontalMenuModule(),
           const SizedBox(height: 10,),
-          ScheduleList(
-            items: [
-              ScheduleItem(
-                date: 'May 1, 2024',
-                time: '2:30 PM',
-                doctorName: 'Dr. Manhattan',
-                address: '500 W Overland Ave',
-                color: Colors.green[100]!, // Replace with appropriate color
-              ),
-              ScheduleItem(
-                date: 'May 1, 2024',
-                time: '2:30 PM',
-                doctorName: 'Dr. Manhattan',
-                address: '500 W Overland Ave',
-                color: Colors.red[100]!, // Replace with appropriate color
-              ),
-              ScheduleItem(
-                date: 'May 1, 2024',
-                time: '2:30 PM',
-                doctorName: 'Dr. Manhattan',
-                address: '500 W Overland Ave',
-                color: Colors.blue[100]!, // Replace with appropriate color
-              ),
-              ScheduleItem(
-                date: 'May 1, 2024',
-                time: '2:30 PM',
-                doctorName: 'Dr. Manhattan',
-                address: '500 W Overland Ave',
-                color: Colors.yellow[100]!, // Replace with appropriate color
-              ),
-              // ... More ScheduleItems ..
-            ],
-          ),
+          ScheduleList(),
           const Expanded(
               child: NewsSectionModule(
                 newsItems: [

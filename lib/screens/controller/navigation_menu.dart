@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
+import '../chatapp/chat_screen.dart';
+import '../chatapp/contacts/messages_list.dart';
 import '../home/blueprint/home_blueprint.dart';
 
 class NavigationController extends GetxController {
@@ -13,13 +15,11 @@ class NavigationController extends GetxController {
   NavigationController({this.user}) {
 
     screens = [
-      HomeScreen(user: user), // Pass user to HomeScreen
+      HomeScreen(user: user),
       Container(
         color: Colors.white,
       ),
-      Container(
-        color: Colors.black,
-      ),
+      ChatScreenList(userData: user),
       Container(
         color: Colors.green,
       ),

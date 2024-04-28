@@ -41,7 +41,11 @@ dependencies:
   font_awesome_flutter: ^10.7.0
   sign_in_button: ^3.2.0
   get: ^4.6.6
-  table_calendar: ^3.1.1
+  table_calendar: ^3.0.9
+  flutter_gemini: ^2.0.3
+  dash_chat_2: ^0.0.20
+  flutter_svg: ^2.0.10+1
+  firebase_database: ^10.5.4
 
 dev_dependencies:
   flutter_test:
@@ -66,8 +70,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+     - assets/asset_logo.svg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ScheduleItem extends StatelessWidget {
+class ScheduleItemWidget extends StatelessWidget {
   final String date;
   final String time;
   final String doctorName;
   final String address;
   final Color color; // Add color to customize the background of each card
 
-  const ScheduleItem({
+  const ScheduleItemWidget({
     super.key,
     required this.date,
     required this.time,
