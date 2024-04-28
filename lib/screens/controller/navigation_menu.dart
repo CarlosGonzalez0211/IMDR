@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:hackathon_app/screens/calendar/blueprint/calendar_blueprint.dart';
 
 import '../chatapp/chat_screen.dart';
 import '../chatapp/contacts/messages_list.dart';
@@ -20,6 +21,11 @@ class NavigationController extends GetxController {
         color: Colors.white,
       ),
       ChatScreenList(userData: user),
+      HomeScreen(user: user), // Pass user to HomeScreen
+      const CalendarBlueprint(),
+      Container(
+        color: Colors.black,
+      ),
       Container(
         color: Colors.green,
       ),
