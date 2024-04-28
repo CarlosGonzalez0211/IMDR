@@ -1,9 +1,11 @@
-import 'package:flutter/foundation.dart';
-
 class Event {
   final String title;
-  Event({required this.title});
+  final String description;
+  final String startTime;
+  final String endTime;
+
+  Event({required this.title, this.description = '', required this.startTime, required this.endTime});
 
   @override
-  String toString() => title;
+  String toString() => '$title: $description - from:$startTime - $endTime ';
 }
