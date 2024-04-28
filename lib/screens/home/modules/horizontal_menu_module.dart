@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../locations/locations_map_screen.dart';
 import '../widgets/menu_button_widget.dart';
 
 class HorizontalMenuModule extends StatelessWidget {
@@ -24,7 +25,7 @@ class HorizontalMenuModule extends StatelessWidget {
             icon: FontAwesomeIcons.userNurse,
             label: 'Find A Doctor',
             onTap: () {
-              // TODO: Implement callback
+              navigateToLocationsScreen(context);
             },
           ),
           MenuButton(
@@ -45,4 +46,13 @@ class HorizontalMenuModule extends StatelessWidget {
       ),
     );
   }
+
+
+  void navigateToLocationsScreen(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const MapPage()),
+    );
+  }
+
 }

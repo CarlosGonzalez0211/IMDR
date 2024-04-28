@@ -1,70 +1,88 @@
 import 'package:flutter/material.dart';
 
+import '../../../services/managers/news_manager.dart';
 import '../widgets/news_item_widget.dart';
 
 class NewsSectionModule extends StatelessWidget {
-  final List<NewsItem> newsItems;
+  final NewsManager newsManager = NewsManager();
 
-  const NewsSectionModule({
+  NewsSectionModule({
     super.key,
-    required this.newsItems,
   });
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center, // Center the column contents
-        children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    SizedBox(width: 100,),
-                    Text(
-                      'Our Latest',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    SizedBox(width: 150,),
-                    Text(
-                      'Health Notes',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-                Center(
-                  child: Padding(
-                    padding: EdgeInsets.all(16.0), // Add padding for better spacing around the text
-                    child: Text(
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, Viverra nunc ante velit vitae.",
-                      textAlign: TextAlign.center, // Center-align the text
-                      style: TextStyle(
-                        fontSize: 18.0, // Adjust font size according to your design
-                        height: 1.5,
-                        fontWeight: FontWeight.w300
-                      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  SizedBox(width: 100),
+                  Text(
+                    'Our Latest',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                )
-              ],
-            ),
+                ],
+              ),
+              Row(
+                children: [
+                  SizedBox(width: 150),
+                  Text(
+                    'Health Notes',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              Center(
+                child: Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Text(
+                    "Learn about the lastests News in your country!",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      height: 1.5,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
-          ...newsItems, // Spread operator to add all news items
-        ],
-      ),
+        ),
+        Expanded( // Wrap with Expanded
+          child: StreamBuilder<List<NewsItem>>(
+            stream: newsManager.newsStream,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                final newsItems = snapshot.data!;
+                return ListView.builder( // Use ListView.builder
+                  physics: const NeverScrollableScrollPhysics(), // Add this line
+                  itemCount: newsItems.length,
+                  itemBuilder: (context, index) {
+                    return newsItems[index];
+                  },
+                );
+              } else if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              } else {
+                return const CircularProgressIndicator();
+              }
+            },
+          ),
+        ),
+      ],
     );
   }
 }

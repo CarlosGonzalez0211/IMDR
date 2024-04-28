@@ -54,7 +54,7 @@ class _LepiaChatScreenState extends State<LepiaChatScreen> {
             children: <Widget>[
               IconButton(
                 onPressed: () {}, // Define your button functionality here
-                icon: const Icon(FontAwesomeIcons.fileMedicalAlt, color: Colors.grey,), // Main icon
+                icon: const Icon(FontAwesomeIcons.fileMedicalAlt, color: Colors.blue,), // Main icon
                 iconSize: 30, // You can adjust the size as needed
               ),
               const Positioned(

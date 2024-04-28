@@ -17,12 +17,8 @@ class NavigationController extends GetxController {
 
     screens = [
       HomeScreen(user: user),
-      Container(
-        color: Colors.white,
-      ),
-      ChatScreenList(userData: user),
-      HomeScreen(user: user), // Pass user to HomeScreen
       const CalendarBlueprint(),
+      ChatScreenList(userData: user),
       Container(
         color: Colors.black,
       ),
@@ -57,7 +53,8 @@ class NavigationMenu extends StatelessWidget {
             NavigationDestination(icon: Icon(FontAwesomeIcons.house), label: "Home"),
             NavigationDestination(icon: Icon(FontAwesomeIcons.calendar), label: "Calendar"),
             NavigationDestination(icon: Icon(FontAwesomeIcons.comments), label: "Chat"),
-            NavigationDestination(icon: Icon(FontAwesomeIcons.user), label: "Me"),
+            NavigationDestination(icon: Icon(FontAwesomeIcons.lightbulb), label: "Insights"),
+            NavigationDestination(icon: Icon(FontAwesomeIcons.peopleGroup), label: "People"),
           ],
         ),
       ),

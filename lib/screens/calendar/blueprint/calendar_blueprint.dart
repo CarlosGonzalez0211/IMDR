@@ -38,7 +38,7 @@ class _CalendarBlueprintState extends State<CalendarBlueprint> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("ESTech Calendar"),
+        title: const Text("My Calendar"),
         centerTitle: true,
       ),
       body: Column(

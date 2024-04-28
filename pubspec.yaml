@@ -42,13 +42,14 @@ dependencies:
   sign_in_button: ^3.2.0
   get: ^4.6.6
   table_calendar: ^3.0.9
-<<<<<<< HEAD
   flutter_gemini: ^2.0.3
   dash_chat_2: ^0.0.20
   flutter_svg: ^2.0.10+1
   firebase_database: ^10.5.4
-=======
->>>>>>> fa0c081fdab73f2ebd59578f3620f2c7cec58765
+  http: ^1.2.1
+  google_maps_flutter: ^2.6.1
+  flutter_polyline_points: ^2.0.0
+  location: ^6.0.1
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +76,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
      - assets/asset_logo.svg
+     - assets/
+     - assets/all_good_female_doctor.svg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
